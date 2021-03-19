@@ -1,0 +1,86 @@
+﻿
+@model OrganisationEditing.Models.Employee
+@{
+    Layout = "~/Views/Shared/LoginLayout.cshtml";
+
+}
+@*<h2 style="padding-left:550px">Employee Login Form</h2>
+
+    <body bgcolor="aliceblue" font-color="Black">
+        @using (Html.BeginForm("LoginEmp", "Loginc", FormMethod.Post))
+        {
+            <table border='0' width='480px' cellpadding='0' cellspacing='0' align='center'>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.UserName)
+                    </td>
+                    <td>
+                        @Html.EditorFor(m => m.UserName)
+                    </td>
+                </tr>
+                <tr> <td>&nbsp;</td> </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.Password)
+                    </td>
+                    <td>
+                        @Html.PasswordFor(m => m.Password)
+                    </td>
+                </tr>
+                <tr> <td>&nbsp;</td> </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input type="submit" value="Login" class="btn btn-primary" />
+                    </td>
+                </tr>
+            </table>
+        }
+    </body>*@
+<h1>Employee Login Form </h1>
+<div class="clear-loading spinner">
+    <span></span>
+</div>
+<div class="w3ls-login box box--big">
+    <!-- form starts here -->
+    <form action="LoginEmp" method="post">
+        <div class="agile-field-txt">
+            <label><i class="fa fa-user" aria-hidden="true"></i> Username </label>
+            <input type="text" name="UserName" placeholder="Enter User Name" required="" />
+        </div>
+        <div class="agile-field-txt">
+            <label><i class="fa fa-unlock-alt" aria-hidden="true"></i> password </label>
+            <input type="password" name="Password" placeholder="Enter Password" required="" id="myInput" />
+            <div class="agile_label">
+                <input id="check3" name="check3" type="checkbox" value="show password" onclick="myFunction()">
+                <label class="check" for="check3">Show password</label>
+            </div>
+            <div class="agile-right">
+                <a href="#">forgot password?</a>
+            </div>
+        </div>
+        <!-- script for show password -->
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myInput");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+        </script>
+        <!-- //end script -->
+        <input type="submit" value="LOGIN">
+
+    </form>
+</div>
+<div class="copy-wthree">
+
+</div>
+
+
+
+
+

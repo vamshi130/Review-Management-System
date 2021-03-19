@@ -1,0 +1,90 @@
+﻿<style>
+    .submissionShadow {
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+        width: 40vw;
+        height: 342px;
+        padding-left: 80px;
+        margin-top: 79px;
+        border-radius: 107px;
+        margin-left: 239px;
+    }
+    .Agenda {
+        font-size: 18px;
+        margin-top: 40px;
+        padding-left: 98px;
+    }
+    .submissionHeading {
+        font-size: 25px;
+        background-color: black;
+        color: #fff;
+        padding-top: 11px;
+       
+        padding-left: 40px;
+        padding-right: 38px;
+        border-radius: 28px;
+        margin-left: 72px;
+    }
+</style>
+<body style="background-color:aliceblue"></body>
+@model OrganisationEditing.Models.ReviewSubmission
+@{
+    Layout = "~/Views/Shared/emplayoutemployee.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SubmissionScreen</title>
+</head>
+
+<body>
+    @*<h2 style="text-align:left;font-family:Verdana;"><b>Review Submission</b></h2>*@
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-horizontal submissionShadow">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.id)
+            <input type="hidden" name="ReviewId" value="@ViewBag.SubRID" />
+            <input type="hidden" name="EmployeeId" value="@ViewBag.ReviewerId" />
+            <input type="hidden" name="ReviewerId" value="@Session["EmployeeId"]" />
+            <input type="hidden" name="OrganisationIdF" value="@ViewBag.OrganisationIdF "/>
+            <div><span class="submissionHeading">Review Submission </span></div>
+            <div class="Agenda"> <span>@ViewBag.Agenda</span></div>
+            <div class="form-group" style=" padding-top: 23px;">
+                @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Feedback, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Feedback, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Feedback, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                    <a href="@Url.Action("ReviewerDetails","Loginc",new { empl=Session["EmployeeId"]})" class=" btn btn-primary">Back To List </a>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+
+    </div>
+</body>
+</html>
+

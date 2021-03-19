@@ -1,0 +1,123 @@
+﻿<style>
+    .container1 {
+        float: left;
+        margin: 0;
+        /* padding: 0; */
+        position: absolute;
+        /* top: 50%; */
+        left: 50%;
+        transform: translate(-50%);
+        margin-top: 40px;
+        text-align: center;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+        border: 1px solid #BECFD6;
+        padding-bottom: 30px;
+        width: 40vw;
+        border-radius: 74px;
+    }
+    .review_label {
+        font-size: 21px;
+        margin-top: -38px;
+        transform: translate(0%,-84%);
+    }
+    .main_heading {
+        font-size: 24px;
+        width: 72%;
+        background-color: black;
+        color: #fff;
+        margin-top: 0px;
+        display: inline-block;
+        border-radius: 25px;
+    }
+
+    .submit_buttom {
+        width: 100%;
+        transform: translate(34%);
+    }
+
+    .reviwers_select {
+        transform: translate(60%);
+    }
+    .agendaname {
+        margin-top: -6px;
+    }
+
+    .center {
+        margin-top: 35px;
+    }
+</style>
+
+@model OrganisationEditing.Models.MultiAssignments
+
+@{
+    Layout = "~/Views/Shared/emplayout.cshtml";
+}
+
+<p>
+
+</p>
+
+<span id="MessageA" class="dl-horizontal"hidden>@TempData["MessageA"]</span>
+<body style="background-color:aliceblue">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    
+
+    <div class="container1">
+        <span class=" main_heading">ReviewAssignment</span>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+        <input type="hidden" name="OrganisationId" value="@Session["Id"]" />
+        <input type="hidden" name="ReviewId" value="@ViewBag.ReviewIdnum" />
+        <input type="hidden" name="Status" value="True" />
+        <div>
+            <div class="form-group " @*style="background:black;border-radius:10px 10px 0 0"*@>
+
+                <label style=" margin-top: 28px;">Review Agenda</label><b />
+
+                @*@Html.DropDownListFor(model => model.ReviewId, new SelectList(ViewBag.ReviewId, "ReviewId", "Agenda"), "select", new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(model => model.ReviewId, "", new { @class = "text-danger" })
+            </div>
+            <span> @ViewBag.AgendaName</span>
+
+
+            <div class="form-group" style=" padding-left: 160px;">
+                <label style="margin-left: -164px;">Employee Name</label>
+                @Html.DropDownListFor(model => model.EmployeeId, new MultiSelectList(ViewBag.EmployeeId, "EmployeeId", "FirstName").OrderBy(x => x.Text), "select", new { @class = "form-control ", @multiple = "multiple" })
+                @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group" style=" margin-left: 160px;">
+                <label style=" margin-left: -164px;">Reviewer</label>
+                @*@Html.LabelFor(model => model.Reviewer, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                @Html.DropDownListFor(model => model.Reviewer, new SelectList(ViewBag.EmployeeId, "EmployeeId", "FirstName").OrderBy(x => x.Text), "select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Reviewer, "", new { @class = "text-danger" })
+                @Html.ValidationSummary()
+            </div>
+            <div class="form-group">
+                <div>
+                    <input type="submit" value="Create" style="height:33px;width:80px" class="btn btn-primary" onclick="return confirm('Are you Sure you want Assign review ')" />
+                    <a href="@Url.Action("ReviewList","Review",new {orgid=Session["Id"] })" class=" btn btn-primary"style=" width: 75px;">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    }
+    @*<div style="padding-left:300px">
+
+        </div>*@
+</body>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            var message = $('#MessageA').text();
+            if (message !== '') {
+                toastr.success(message);
+            }
+        });
+    </script>
+}
+

@@ -1,0 +1,119 @@
+﻿<style>
+    .container5 {
+        text-align: center;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+        border: 1px solid #BECFD6;
+        margin-top: 67px;
+        padding-left: 130px;
+        width: 45vw;
+        margin-left: 239px;
+        border-radius: 51px;
+    }
+    .container6 {
+        font-size: 30px;
+        background-color: black;
+        color: #fff;
+        border-radius: 43px;
+        margin-left: -9px;
+        padding: 1px;
+        margin-right: 146px;
+    }
+
+</style>
+@model OrganisationEditing.Models.ReviewCreation
+@{
+    Layout = "~/Views/Shared/emplayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CreateR</title>
+</head>
+<spam id="MessageR" class="dl-horizontal"hidden>@TempData["MessageR"]</spam>
+<body style="background-color:aliceblue">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        
+
+        <div class="form-horizontal container5" style="text-align:center">
+            <div class="container6">
+                <span>Review Creation</span>
+            </div>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ReviewId)
+           
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Agenda, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Agenda, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Agenda, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Review_Cycle_Start_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Review_Cycle_Start_Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Review_Cycle_Start_Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Review_Cycle_End_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Review_Cycle_End_Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Review_Cycle_End_Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MinimunRating, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MinimunRating, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MinimunRating, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaximumRating, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MaximumRating, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MaximumRating, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <input type="hidden" name="Id" value="@Session["Id"]" />
+            <div class="form-group">
+                <div class="col-md-5">
+                    <input type="submit" value="Create" class="btn btn-primary " style="text-align:start;margin-left: 165px;width:87px" onclick="return confirm('Are you Sure you want to Add Agenda')" />
+                    <a href="@Url.Action("ReviewList", "Review", new { orgid = Session["Id"] })" class=" btn btn-primary" style=" margin-left: 253px; margin-top: -53px;width:87px">Back </a>
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            var message = $('#MessageR').text();
+            if (message !== '') {
+                toastr.success(message);
+            }
+        });
+    </script>
+}

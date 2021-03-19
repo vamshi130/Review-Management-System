@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReviewEditingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="CityName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="StateId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="CountryName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DOB" Type="date" Nullable="false" />
+    <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Designation" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Date of joining" Type="date" Nullable="false" />
+    <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="5000" Nullable="false" />
+    <Property Name="Employee Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhoneNumber" Type="bigint" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Phone Number" Type="bigint" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="StateId" Type="int" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="ReviewAssignment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="ReviewId" Type="int" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+    <Property Name="Reviewer" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReviewCreation">
+    <Key>
+      <PropertyRef Name="ReviewId" />
+    </Key>
+    <Property Name="ReviewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Agenda" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="Review Cycle Start Date" Type="date" Nullable="false" />
+    <Property Name="Review Cycle End Date" Type="date" Nullable="false" />
+    <Property Name="MinimunRating" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="MaximumRating" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="500" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReviewSubmission">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="ReviewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+    <Property Name="Rating" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Feedback" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="int" Nullable="false" />
+    <Property Name="StateName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK__Employees__Id__4AB81AF0">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Organizat__CityI__2C3393D0">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityId" />
+      </Principal>
+      <Dependent Role="Organization">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Organizat__Count__2D27B809">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="Organization">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Organizat__State__2E1BDC42">
+    <End Role="State" Type="Self.State" Multiplicity="1" />
+    <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="Organization">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ReviewAss__Emplo__778AC167">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="ReviewAssignment" Type="Self.ReviewAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="ReviewAssignment">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ReviewAss__Revie__787EE5A0">
+    <End Role="ReviewCreation" Type="Self.ReviewCreation" Multiplicity="1" />
+    <End Role="ReviewAssignment" Type="Self.ReviewAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReviewCreation">
+        <PropertyRef Name="ReviewId" />
+      </Principal>
+      <Dependent Role="ReviewAssignment">
+        <PropertyRef Name="ReviewId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ReviewSub__Emplo__7C4F7684">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="ReviewSubmission" Type="Self.ReviewSubmission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="ReviewSubmission">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ReviewSub__Revie__7B5B524B">
+    <End Role="ReviewCreation" Type="Self.ReviewCreation" Multiplicity="1" />
+    <End Role="ReviewSubmission" Type="Self.ReviewSubmission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReviewCreation">
+        <PropertyRef Name="ReviewId" />
+      </Principal>
+      <Dependent Role="ReviewSubmission">
+        <PropertyRef Name="ReviewId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ReviewEditingModelStoreContainer">
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReviewAssignment" EntityType="Self.ReviewAssignment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReviewCreation" EntityType="Self.ReviewCreation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReviewSubmission" EntityType="Self.ReviewSubmission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Employees__Id__4AB81AF0" Association="Self.FK__Employees__Id__4AB81AF0">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Organizat__CityI__2C3393D0" Association="Self.FK__Organizat__CityI__2C3393D0">
+      <End Role="City" EntitySet="City" />
+      <End Role="Organization" EntitySet="Organization" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Organizat__Count__2D27B809" Association="Self.FK__Organizat__Count__2D27B809">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Organization" EntitySet="Organization" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Organizat__State__2E1BDC42" Association="Self.FK__Organizat__State__2E1BDC42">
+      <End Role="State" EntitySet="State" />
+      <End Role="Organization" EntitySet="Organization" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ReviewAss__Emplo__778AC167" Association="Self.FK__ReviewAss__Emplo__778AC167">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="ReviewAssignment" EntitySet="ReviewAssignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ReviewAss__Revie__787EE5A0" Association="Self.FK__ReviewAss__Revie__787EE5A0">
+      <End Role="ReviewCreation" EntitySet="ReviewCreation" />
+      <End Role="ReviewAssignment" EntitySet="ReviewAssignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ReviewSub__Emplo__7C4F7684" Association="Self.FK__ReviewSub__Emplo__7C4F7684">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="ReviewSubmission" EntitySet="ReviewSubmission" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ReviewSub__Revie__7B5B524B" Association="Self.FK__ReviewSub__Revie__7B5B524B">
+      <End Role="ReviewCreation" EntitySet="ReviewCreation" />
+      <End Role="ReviewSubmission" EntitySet="ReviewSubmission" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

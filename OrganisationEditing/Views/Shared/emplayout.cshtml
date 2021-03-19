@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container" >
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="~/Content/stars (2).jpg" style=" height: 46px; width: 125px; float:left !important;margin-left: -71px;" />
+                @Html.ActionLink("Review System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <a href="~/Views/Shared/emplayout.cshtml"></a>
+                    <li>@Html.ActionLink("Review", "ReviewList", "Review", new { orgid = Session["Id"] }, null)</li>
+                    <li>@Html.ActionLink("Employee List","EmpList","Employees",new { user=Session["Id"]},null) </li>
+
+                    @*<li>@Html.ActionLink("Assigned Reviews", "ReviewAssign", "Loginc")</li>
+        <li>@Html.ActionLink("Submitted Reviews", "SubmissionDetails", "Loginc")</li>*@
+
+                </ul>
+
+                <ul class="nav navbar-nav" style="float:right !important">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                    <li>@Html.ActionLink("Logout", "Logout", "Loginc")</li>
+                    }
+
+                </ul>
+                <a class="navbar-brand" style="float:right" href="#">@Session["Name"]</a>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @Html.Partial("_Notifications")
+        @RenderBody()
+        <hr />      
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+
+
+</body>
+</html>
+  
+

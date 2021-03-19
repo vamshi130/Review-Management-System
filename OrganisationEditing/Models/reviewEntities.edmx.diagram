@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2a65f31f6fa44853a7982040a4977a88" Name="Diagram1" ZoomLevel="80">
+        <EntityTypeShape EntityType="ReviewEditingModel.Admin" Width="1.5" PointX="2.875" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReviewEditingModel.City" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReviewEditingModel.Country" Width="1.5" PointX="0.625" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReviewEditingModel.Employee" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReviewEditingModel.Organization" Width="1.5" PointX="2.875" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReviewEditingModel.ReviewAssignment" Width="1.5" PointX="10.375" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReviewEditingModel.ReviewCreation" Width="1.5" PointX="7.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReviewEditingModel.ReviewSubmission" Width="1.5" PointX="13.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReviewEditingModel.State" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReviewEditingModel.sysdiagram" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <AssociationConnector Association="ReviewEditingModel.FK__Organizat__CityI__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="ReviewEditingModel.FK__Organizat__Count__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="ReviewEditingModel.FK__Employees__Id__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="ReviewEditingModel.FK__ReviewAss__Emplo__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="ReviewEditingModel.FK__ReviewAss__Revie__25518C17" ManuallyRouted="false" />
+        <AssociationConnector Association="ReviewEditingModel.FK__ReviewSub__Emplo__7C4F7684" ManuallyRouted="false" />
+        <AssociationConnector Association="ReviewEditingModel.FK__Organizat__State__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="ReviewEditingModel.FK__ReviewAss__Organ__40F9A68C" ManuallyRouted="false" />
+        <AssociationConnector Association="ReviewEditingModel.FK__ReviewAss__Revie__787EE5A0" ManuallyRouted="false" />
+        <AssociationConnector Association="ReviewEditingModel.FK__ReviewSub__Revie__7B5B524B" ManuallyRouted="false" />
+        <AssociationConnector Association="ReviewEditingModel.FK__ReviewSub__Revie__7849DB76" />
+        <AssociationConnector Association="ReviewEditingModel.FK__City__StateId__2F9A1060" />
+        <AssociationConnector Association="ReviewEditingModel.FK__State__CountryId__2DB1C7EE" />
+        <AssociationConnector Association="ReviewEditingModel.FK__ReviewSub__Organ__5006DFF2" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

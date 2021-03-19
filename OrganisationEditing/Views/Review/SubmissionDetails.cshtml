@@ -1,0 +1,89 @@
+﻿<style>
+    table {
+        width: 100%;
+    }
+
+    .center {
+        margin-top: 20px
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    #t01 tr:nth-child(even) {
+        background-color: #eee;
+    }
+
+    #t01 tr:nth-child(odd) {
+        background-color: #fff;
+    }
+
+    #t01 th {
+        background-color: gray;
+        color: white;
+    }
+</style>
+<body style="background-color:aliceblue">
+</body>
+@model IEnumerable<OrganisationEditing.Models.ReviewSubmission>
+@{
+    ViewBag.Title = "SubmissionDetails";
+    Layout = "~/Views/Shared/emplayout.cshtml";
+}
+
+<h2 style="text-align:center;font-family:Verdana;"><b> SubmissionDetails</b></h2>
+<body style="background-color:aliceblue">
+</body>
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table id="t01" class="center">
+    <tr>
+        <th>
+            Review Agenda
+        </th>
+        <th>
+            Employees
+        </th>
+        <th>
+            Rating
+        </th>
+        <th>
+            Feedback
+        </th>
+        <th>
+            Reviewer Name
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewCreation.Agenda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Feedback)
+            </td>
+            <td>
+                @item.Employee1.FirstName
+            </td>
+
+        </tr>
+    }
+
+
+</table>

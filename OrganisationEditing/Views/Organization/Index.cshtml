@@ -1,0 +1,132 @@
+﻿@*<head>
+        @RenderSection("head", required: false)
+    </head>*@
+<body style="background-color:aliceblue">
+    <style>
+        .divider {
+            width: 4px;
+            height: auto;
+            display: inline-block;
+        }
+        table {
+            width: 100%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+
+        #t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+
+        #t01 tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        #t01 th {
+            background-color: gray;
+            color: white;
+        }
+    </style>
+
+
+    @model IEnumerable<OrganisationEditing.Models.Organization>
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/admin.cshtml";
+    }
+    <h1 style="text-align:center;font-family:Verdana;"><b>Manage Organisation</b></h1>
+    <p>
+       
+        <a href="@Url.Action("Create")" class=" btn btn-primary">Add New </a>
+        
+    </p>
+    <table id="t01">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                UserName
+            </th>
+            @* <th>
+                   Password
+                </th>
+            *@
+            <th>
+                Country
+            </th>
+            <th>
+                State
+            </th>
+            <th>
+                City
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Description
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone_Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                @* <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                *@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country.CountryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State.StateName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City.CityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td style="display:flex">
+                    <a href="@Url.Action("Edit",new {id=item.Id })" class=" btn btn-primary"> Edit</a>  
+                    <div class="divider"></div>
+                    <a href="@Url.Action("Delete",new {id=item.Id })" class=" btn btn-danger" onclick="return confirm('Are you Sure you want to delete:  @item.Name') "> Delete </a>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+

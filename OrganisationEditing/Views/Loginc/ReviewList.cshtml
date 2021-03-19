@@ -1,0 +1,126 @@
+﻿<body style="background-color:aliceblue">
+    <style>
+        .divider {
+            width: 5px;
+            height: auto;
+            display: inline-block;
+        }
+        .div {
+            display: flex;
+            border-right: none;
+            border-left: none;
+            border-bottom: none;
+        }
+        table {
+            
+            width: 100%;
+        }
+        .center {
+            margin-top: -2px
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 6px;
+            text-align: left;
+        }
+
+        #t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+
+        #t01 tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        #t01 th {
+            background-color: gray;
+            color: white;
+        }
+    </style>
+    @model IEnumerable<OrganisationEditing.Models.ReviewCreation>
+
+    @{
+        ViewBag.Title = "Review";
+        Layout = "~/Views/Shared/emplayout.cshtml";
+    }
+
+    <h2 style="text-align:center;font-family:Verdana;"><b>Manage Reviews</b></h2>
+   
+<p>
+    <a href="@Url.Action("CreateR")" class=" btn btn-primary" style="margin-top:19px">Add Review Agenda </a>
+</p>
+    <table id="t01" class="center">
+        <tr>
+            @*<th>
+                ReviewId
+            </th>*@
+            <th>
+                Agenda
+            </th>
+            <th>
+                Start Date
+            </th>
+            <th>
+                End Date
+            </th>
+            <th>
+                Min Rating
+            </th>
+            <th>
+                Max Rating
+            </th>
+            <th>
+                Description
+            </th>
+            <th>Action</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.ReviewId)
+                    
+                </td>*@
+                <td>
+                    @*@Html.ActionLink(item.Agenda, "ReviewAssign")*@
+                    @Html.DisplayFor(modelItem=>item.Agenda)
+
+                </td>
+                <td>
+                    @item.Review_Cycle_Start_Date.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @item.Review_Cycle_End_Date.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MinimunRating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaximumRating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+
+                <td class="div">
+                    
+                    @*<a href="@Url.Action("Edit",new { /* id=item.PrimaryKey */ })" class=" btn btn-info"> Edit</a>*@
+                    <a href="@Url.Action("AssigningReview", new {id=item.ReviewId}) " class="btn btn-success">Assign </a>
+                    <div class="divider"></div>
+                    <a href="@Url.Action("SubmissionDetails", new {sub=item.ReviewId})" class="btn btn-primary">Submission</a>
+                    <div class="divider"></div>
+                    <a href="@Url.Action("ReviewAssign",new{rev=item.ReviewId})" class="btn btn-success">Details</a>
+                    @*<a href="@Url.Action("Delete",new { /* id=item.PrimaryKey */ })" class=" btn btn-danger">Delete</a>*@
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    </body>

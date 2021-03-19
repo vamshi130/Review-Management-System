@@ -1,0 +1,114 @@
+﻿
+@model OrganisationEditing.Models.user
+@{
+    Layout = "~/Views/Shared/LoginLayout.cshtml";
+}
+
+@*<h2 style="padding-left:550px">Organisation Login Form</h2>
+
+    <body bgcolor="aliceblue" font-color="Black">
+
+
+        @using (Html.BeginForm("Login", "Loginc", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <table border='0' width='480px' cellpadding='0' cellspacing='0' align='center'>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.UserId)
+                    </td>
+                    <td>
+                        @Html.EditorFor(m => m.UserId)
+                    </td>
+                </tr>
+                <tr> <td>&nbsp;</td> </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.Password)
+                    </td>
+                    <td>
+                        @Html.PasswordFor(m => m.Password)
+                    </td>
+                </tr>
+                <tr> <td>&nbsp;</td> </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input type="submit" value="Login" class="btn btn-primary" />
+                    </td>
+                </tr>
+            </table>
+
+        }
+    </body>*@
+<h1>Organisation Login Form </h1>
+<div class="login-form">
+    <div class="top-login">
+        
+            <span><img src="images/group.png" alt="" /></span>
+    </div>
+    <h1>Login</h1>
+    <div class="login-top">
+        <form action="Login" method="post">
+            <div class="login-ic">
+                <i></i>
+                <input type="text" name="UserName" placeholder="Enter User Name"  required="" />
+                @*<input type="text" value="UserName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'UserName';}" />*@
+                <div class="clear"> </div>
+            </div>
+            <div class="login-ic">
+                <i class="icon"></i>
+                <input type="password" name="Password" placeholder="Enter Password" required="">
+                @*<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" />*@
+                <div class="clear"> </div>
+            </div>
+            @Html.ValidationSummary()
+            <div class="log-bwn">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+    </div>
+    <!--<p class="copy">-->@*© 2016 Square Login Form. All rights reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a>*@<!--</p>-->
+</div>
+<!--<div class="clear-loading spinner">
+    <span></span>
+</div>
+<div class="w3ls-login box box--big">-->
+<!-- form starts here -->
+<!--<form action="Login" method="post">
+    <div class="agile-field-txt">
+        <label><i class="fa fa-user" aria-hidden="true"></i> UserName </label>
+        <input type="text" name="UserName" placeholder="Enter User Name" required="" />
+    </div>
+    <div class="agile-field-txt">
+        <label><i class="fa fa-unlock-alt" aria-hidden="true"></i> password </label>
+        <input type="password" name="Password" placeholder="Enter Password" required="" id="myInput" />
+        <div class="agile_label">
+            <input id="check3" name="check3" type="checkbox" value="show password" onclick="myFunction()">
+            <label class="check" for="check3">Show password</label>
+        </div>
+        <div class="agile-right">
+            <a href="#">forgot password?</a>
+        </div>
+    </div>-->
+<!-- script for show password -->
+<!--<script>
+        function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+</script>-->
+<!-- //end script -->
+<!--<input type="submit" value="LOGIN">
+
+    </form>
+</div>
+<div class="copy-wthree">
+
+</div>-->

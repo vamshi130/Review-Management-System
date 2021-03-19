@@ -1,0 +1,255 @@
+﻿<style>
+    .container1 {
+        padding-top: 92px;
+        float: left;
+    }
+
+    .container2 {
+        float: left;
+        padding-top: 50px;
+        margin-left: 90px;
+    }
+
+    .container3 {
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+        border: 1px solid #BECFD6;
+        margin-top: 61px;
+        width: 50vw;
+        padding-left: 179px;
+        border-radius: 80px;
+        margin-left: 173px;
+    }
+
+    .spanstyle {
+        font-size: 31px;
+        background-color: black;
+        color: #fff;
+        padding-left: 75px;
+        margin-left: -166px;
+        padding-right: 63px;
+        padding-top: 4px;
+        border-radius: 30px;
+    }
+</style>
+@model OrganisationEditing.Models.Organization
+
+@{
+    if (Model == null)
+    {
+        ViewBag.Title = "Organisation Form";
+        Layout = "~/Views/Shared/admin.cshtml";
+    }
+    else
+    {
+        ViewBag.Title = "Organisation Edit Form";
+        Layout = "~/Views/Shared/admin.cshtml";
+    }
+}
+
+
+<span id="Message1" class="dl-horizontal" hidden>@TempData["Message1"]</span>
+
+<body style="background-color:aliceblue">
+</body>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <div class="form-horizontal container3 ">
+            <span class="spanstyle">@ViewBag.Title</span>
+
+
+            <div class="container1">
+                <div class="form-group">
+                    <label>Name </label>
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.ValidateFor(model => model.Name, "", new { @class = "text-danger" })*@
+
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    @Html.EditorFor(model => model.Phone_Number, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Phone_Number, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group">
+                    <label> Email</label>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                </div>
+                @if (Model == null)
+                {
+                    <div class="form-group">
+                        <label>User Name</label>
+                        @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Password" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group">
+                        <label>User Name</label>
+                        @Html.TextBoxFor(model => model.UserId, new { @class = "form-control", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", @Value = Model.Password, @readonly = "readonly", placeholder = "Password" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                    </div>
+
+                }
+
+            </div>
+            
+            <div class="container2">
+                @if (Model == null)
+                {
+                    <div class="form-group">
+                        <label>Country</label>
+                        @Html.DropDownListFor(model => model.CountryId, ViewBag.CountryList as SelectList, "Select Country", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>State</label>
+                        @Html.DropDownListFor(model => model.StateId, new SelectList(" "), "select state", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>City</label>
+                        @Html.DropDownListFor(model => model.CityId, new SelectList(" "), "select city", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group">
+                        <label>Country</label>
+                        @Html.DropDownListFor(model => model.CountryId, new SelectList(ViewBag.CountryList, "CountryId", "CountryName"), "Select Country", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>State</label>
+                        @Html.DropDownListFor(model => model.StateId, new SelectList(ViewBag.StateList, "StateId", "StateName"), "select state", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>City</label>
+                        @Html.DropDownListFor(model => model.CityId, new SelectList(ViewBag.CityList, "CityId", "CityName"), "select city", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+
+                    </div>
+
+                }
+
+
+                <div class="form-group">
+                    <label>Status</label>
+                    <div class="checkbox" style=" margin-left: 10px;">
+                        @Html.EditorFor(model => model.Status, new { Style = "margin-left:10px" })
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @if (Model == null)
+                    {
+                        <input type="submit" value="Create" class="btn btn-primary" onclick="return confirm('Are you Sure you want to save the changes ')" />                      
+                        <a href="@Url.Action("create")" class=" btn btn-primary">Reset </a>
+                        <a href="@Url.Action("Index")" class=" btn btn-primary">Back</a>
+
+                    }
+                    else
+                    {
+                        <input type="submit" value="Save" class="btn btn-primary" onclick="return confirm('Are you Sure you want to save the changes ')" style=" margin-left: 50px;" />
+                        @*<a href="@Url.Action("create")" class=" btn btn-primary">Reset </a>*@
+                        <a href="@Url.Action("Index")" class=" btn btn-primary">Back</a>
+
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#CountryId").change(function () {
+            $.get("/Organization/GetStateList", { CountryId: $("#CountryId").val() }, function (data) {
+                $("#StateId").empty();
+                $.each(data, function (index, row) {
+
+                    $("#StateId").append("<option value='" + row.StateId + "'>" + row.StateName + "</option>")
+                });
+            });
+        })
+    });
+    $(document).ready(function () {
+        $("#StateId").change(function () {
+            $.get("/Organization/GetCityList", { StateId: $("#StateId").val() }, function (data) {
+                $("#CityId").empty();
+                $.each(data, function (index, row) {
+
+                    $("#CityId").append("<option value='" + row.CityId + "'>" + row.CityName + "</option>")
+                });
+            });
+        })
+    });
+
+</script>
+
+
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            var message = $('#Message1').text();
+            if (message !== '') {
+                toastr.success(message);
+            }
+        });
+    </script>
+}
+
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@
+
+

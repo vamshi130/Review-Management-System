@@ -1,0 +1,93 @@
+﻿<body style="background-color:aliceblue">
+    <style>
+        table {
+            width: 100%;
+        }
+        .center{
+            margin-top:30px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        #t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+
+        #t01 tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        #t01 th {
+            background-color: gray;
+            color: white;
+        }
+    </style>
+    <h2 style="text-align:center;font-family:Verdana;"><b>Assigned Reviews </b></h2>
+
+    @model IEnumerable<OrganisationEditing.Models.ReviewAssignment>
+
+    @{
+        Layout = "~/Views/Shared/emplayout.cshtml";
+    } 
+<p>
+    @*<a href="@Url.Action("AssigningReview" ,"Loginc",new { ReviewId = ViewBag.RID ,Orgid=Session["Id"]}) " class="btn btn-primary">Assign Review </a>*@
+    @*@Html.ActionLink("Assign Review", "AssigningReview", "Loginc", new { Model.ReviewId }, null);*@
+</p>
+        <table id="t01" class="center">
+            <tr>
+                <th>
+                    <label>Agenda</label>
+                </th>
+                <th>
+                    <label>Review Start Date</label>
+                </th>
+                <th>
+                    <label>Review End Date</label>
+                </th>
+                <th>
+                    <label>Employees to be reviewed</label>
+                    
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Reviewer)*@
+                   <label>Reviewer</label>
+                </th>                
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReviewCreation.Agenda)
+                    </td>
+                    <td>
+                        @item.ReviewCreation.Review_Cycle_Start_Date.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @item.ReviewCreation.Review_Cycle_End_Date.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem =>item.Employee1.FirstName)
+                    </td>
+                    @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id}) |
+                        @Html.ActionLink("Details", "Details", new { id=item.id })|
+                            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+                    </td>*@
+                </tr>
+            }
+
+        </table>
+    </body>
+

@@ -1,0 +1,92 @@
+﻿<body style="background-color:aliceblue">
+    <style>
+        table {
+            width: 100%;
+        }
+
+        .center {
+            margin-top: 10px
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        #t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+
+        #t01 tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        #t01 th {
+            background-color: gray;
+            color: white;
+        }
+    </style>
+
+    @model IEnumerable<OrganisationEditing.Models.ReviewAssignment>
+
+    @{
+        Layout = "~/Views/Shared/emplayoutemployee.cshtml";
+    }
+    <span id="MessageS" class="dl-horizontal"hidden>@TempData["MessageS"]</span>
+    <h2 style="text-align:center;font-family:Verdana;"><b>Dashboard</b></h2>
+    <a href="@Url.Action("ReviewerSubmits")" class="btn btn-primary">Submitted Reviews</a>
+    <table id="t01" class="center">
+        <tr>
+            <th>
+                <label>Agenda</label>
+            </th>
+            <th>
+                <label>Review start date</label>
+            </th>
+            <th>
+                <label>Review End date</label>
+            </th>
+
+            <th> Employee Name </th>
+            <th> Action</th>
+        </tr>
+
+        @foreach (var item in ViewBag.List)
+        {
+            <tr>
+                <td>
+                    @item.ReviewCreation.Agenda
+                </td>
+                <td>
+                    @item.ReviewCreation.Review_Cycle_End_Date.ToString("dd//MM//yyyy")
+                </td>
+                <td>
+                    @item.ReviewCreation.Review_Cycle_Start_Date.ToString("dd//MM//yyyy")
+                </td>
+                <td>
+                    @item.Employee.FirstName
+                </td>
+                <td>
+                    <a href="@Url.Action("SubmissionScreen",new { empid=item.Employee.EmployeeId,revid=item.Employee1.EmployeeId})" class=" btn btn-primary">Give the Review</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+</body>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            var message = $('#MessageS').text();
+            if (message !== '') {
+                toastr.success(message);
+            }
+        });
+    </script>
+}

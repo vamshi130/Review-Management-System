@@ -1,0 +1,168 @@
+﻿<body style="background-color:aliceblue">
+    <style>
+        .div {
+            display:flex;           
+            border-right: none;
+            border-left: none;
+            border-bottom: none;
+        }
+        .divider {
+            width: 5px;
+            height: auto;
+            display: inline-block;
+        }
+        table {
+            margin-top:4px;
+            padding-right: 3px !important;
+            transform: translate(-47px);
+            width: 100%;
+        }
+        
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th{
+            white-space: nowrap;
+            padding: 5px;
+            text-align: left;
+        }
+        td {        
+            padding: 5px;
+            text-align: left;
+        }
+
+
+        #t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+
+        #t01 tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        #t01 th {
+            background-color: gray;
+            color: white;
+        }
+    </style>
+    @model IEnumerable<OrganisationEditing.Models.Employee>
+
+    @{
+        ViewBag.Title = "EmpList";
+        Layout = "~/Views/Shared/emplayout.cshtml";
+    }
+
+     <h2 style="text-align:center;font-family:Verdana"><b>Manage Employees</b></h2>
+    <a href="@Url.Action("CreateE")" class=" btn btn-primary " style="margin-left: -45px;">Add Employee </a>
+    @*<a href="@Url.Action("ReviewList" ,"Loginc",new { orgid=Session["id"] },null) " class="btn btn-primary">Review</a>*@
+    @*<a href="@Url.Action("LoginEmp" ,"Loginc",new { orgid=Session["id"] },null) " class="btn btn-primary">Employee Login</a>*@
+
+    <table id="t01">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model=>model.FirstName)
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                DOB
+            </th>
+            <th>
+                Gender
+            </th>
+            <th>
+                Designation
+            </th>
+            <th>
+                Join Date
+            </th>
+            <th>
+                Department
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                EmployeeType
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                User Name
+            </th>
+       
+            <th>
+                Action
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @item.DOB.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Designation)
+                </td>
+                <td>
+                    @item.Date_of_joining.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee_Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                @*<td>
+                    @Html.HiddenFor(modelItem => item.Password)
+                </td>*@
+                <td class="div">
+                    <a href="@Url.Action("EditE",new { id1 = item.EmployeeId })" class=" btn btn-primary"> Edit</a>
+                    <div class="divider"></div>
+                    <a href="@Url.Action("EditE",new { id1 = item.EmployeeId })" class=" btn btn-danger" onclick="return confirm('Are you Sure you want to delete ')"> Delete</a>
+                </td>
+
+                @*@Html.ActionLink("Edit", "EditE", new { id1 = item.EmployeeId }) |
+                    @Html.ActionLink("Details", "Details", new {id1=item.EmployeeId }) |
+                     @Html.ActionLink("Delete", "DeleteE", new { id1 = item.EmployeeId })*@
+
+            </tr>
+        }
+
+    </table>
+</body>
